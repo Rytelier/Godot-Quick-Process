@@ -1,0 +1,11 @@
+for node in selected:
+	#Iterate over selected nodes
+	#No undo support!
+	
+	#Available helper functions
+	#QuickAddChild(parent, child) - add child and attach to edited scene
+	#SelectByName(name, from) - select all 'from''s children that have 'name' in their name
+	#SelectByClass(type, from) - select chidlren by their class
+	
+	#You can edit 'addons/QuickProcess/Resources/BaseScript.gd' script to add more helpers
+	#Presets are located in 'addons/QuickProcess/Presets/' folder, you can add custom one

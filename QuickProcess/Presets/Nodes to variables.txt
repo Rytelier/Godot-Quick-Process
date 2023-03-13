@@ -1,0 +1,15 @@
+var varsGD = ""
+var varsCS = ""
+var assignGD = ""
+var assignCS = ""
+for node in selected:
+	varsGD += "var %s : %s\n" % [node.name, node.get_class()]
+	varsCS += "%s %s;\n" % [node.get_class(), node.name]
+	
+	assignGD += "%s = get_node(\"%s\")\n" % [node.name, node.name]
+	assignCS += "%s = GetNode<%s>(\"%s\");\n" % [node.name, node.get_class(), node.name]
+
+print(varsGD)
+print(assignGD)
+print(varsCS)
+print(assignCS)

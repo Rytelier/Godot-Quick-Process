@@ -1,0 +1,86 @@
+[gd_scene load_steps=2 format=3 uid="uid://t78pfgyqrdwu"]
+
+[sub_resource type="CodeHighlighter" id="CodeHighlighter_5tfyy"]
+number_color = Color(0.952941, 0, 0.0509804, 1)
+symbol_color = Color(0.803922, 0.486275, 0, 1)
+function_color = Color(0, 0.862745, 0.247059, 1)
+member_variable_color = Color(0.4, 0.631373, 0.333333, 1)
+
+[node name="QuickProcess" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CodeEdit" type="CodeEdit" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "for node in selected:
+	print(node)"
+draw_tabs = true
+syntax_highlighter = SubResource("CodeHighlighter_5tfyy")
+symbol_lookup_on_click = true
+line_folding = true
+gutters_draw_executing_lines = true
+gutters_draw_line_numbers = true
+code_completion_enabled = true
+indent_automatic = true
+auto_brace_completion_enabled = true
+auto_brace_completion_highlight_matching = true
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -35.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Execute" type="Button" parent="Panel"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -31.0
+offset_right = 69.0
+grow_vertical = 0
+text = "Execute"
+
+[node name="Load" type="Button" parent="Panel"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -483.0
+offset_top = -31.0
+offset_right = -383.0
+grow_horizontal = 0
+grow_vertical = 0
+tooltip_text = "All presets are in addons/QuickProcess/Presets"
+text = "Load preset"
+
+[node name="Presets" type="OptionButton" parent="Panel"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -374.0
+offset_top = -31.0
+grow_horizontal = 0
+grow_vertical = 0
+tooltip_text = "Preset select from addons/QuickProcess/Presets"
+item_count = 1
+popup/item_0/text = "Default"
+popup/item_0/id = 0

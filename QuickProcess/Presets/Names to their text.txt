@@ -1,0 +1,4 @@
+for node in selected:
+	#Change canvas element's node name to match its text
+	if 'text' in node:
+		node.name = node.text

@@ -1,0 +1,3 @@
+for node in selected:
+	#Recursively finds static bodies in selected node's tree
+	SelectByClass("StaticBody3D", node)
