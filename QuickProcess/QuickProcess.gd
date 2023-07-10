@@ -13,6 +13,8 @@ var selectedNodes : Array[Node]
 
 var popupId = 60
 
+var docked = false
+
 func _enter_tree():
 	selection = get_editor_interface().get_selection()
 	FindSceneTreePopup()
@@ -30,7 +32,7 @@ func ShowCodeEditor(id):
 	if id == popupId:
 		var qp : PackedScene = load("res://addons/QuickProcess/Resources/QP window.tscn")
 		codeEditorWindow = qp.instantiate()
-		get_editor_interface().get_window().add_child(codeEditorWindow)
+		get_editor_interface().get_editor_main_screen().get_window().add_child(codeEditorWindow)
 		
 		codeEditorWindow.connect("close_requested", CloseCodeEditor.bind())
 		container = codeEditorWindow.get_node("QuickProcess")
@@ -41,6 +43,9 @@ func ShowCodeEditor(id):
 		
 		var loadPresetButton = container.get_node("Panel/Load")
 		presets = container.get_node("Panel/Presets")
+		
+		var dockButton = codeEditor.get_node("Dock")
+		dockButton.pressed.connect(Dock.bind())
 		
 		var allPresets = DirAccess.open("res://addons/QuickProcess/Presets/").get_files()
 		for preset in allPresets:
@@ -93,7 +98,7 @@ func Selected(nodes : Array[Node]):
 func FindSceneTreePopup():
 	var sceneTreeEditor : Array[Node]
 	var popup
-	FindByClass(get_editor_interface().get_window(), "SceneTreeDock", sceneTreeEditor)
+	FindByClass(get_editor_interface().get_editor_main_screen().get_window(), "SceneTreeDock", sceneTreeEditor)
 	
 	if sceneTreeEditor.size() > 0:
 		for child in sceneTreeEditor[0].get_children():
@@ -122,3 +127,19 @@ func FindByClass(node: Node, className : String, result : Array) -> void:
 		result.push_back(node)
 	for child in node.get_children():
 		FindByClass(child, className, result)
+
+func Dock():
+	if !docked:
+		codeEditorWindow.remove_child(container)
+		add_control_to_bottom_panel(container, "Quick Process")
+		codeEditorWindow.visible = false
+		docked = true
+	else:
+		remove_control_from_bottom_panel(container)
+		codeEditorWindow.visible = true
+		container.visible = true
+		codeEditorWindow.add_child(container)
+		container.set_anchors_preset(Control.PRESET_FULL_RECT)
+		container.size = codeEditorWindow.size
+		docked = false
+	

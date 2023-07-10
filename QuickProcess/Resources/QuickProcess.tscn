@@ -6,8 +6,8 @@ symbol_color = Color(0.803922, 0.486275, 0, 1)
 function_color = Color(0, 0.862745, 0.247059, 1)
 member_variable_color = Color(0.4, 0.631373, 0.333333, 1)
 
-[node name="QuickProcess" type="Control"]
-layout_mode = 3
+[node name="QuickProcess" type="Panel"]
+custom_minimum_size = Vector2(0, 200)
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -15,6 +15,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="CodeEdit" type="CodeEdit" parent="."]
+custom_minimum_size = Vector2(0, 200)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -33,6 +34,16 @@ code_completion_enabled = true
 indent_automatic = true
 auto_brace_completion_enabled = true
 auto_brace_completion_highlight_matching = true
+
+[node name="Dock" type="Button" parent="CodeEdit"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -47.0
+offset_bottom = 31.0
+grow_horizontal = 0
+text = "Dock"
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 1
